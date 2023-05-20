@@ -1,0 +1,51 @@
+name: "Compress Images"
+description: "Compress all images from the provided directory"
+author: "Clyde D'Souza"
+branding:
+  icon: "image"
+  color: "red"
+
+inputs:  
+  inputDirectory:  
+    description: "Directory that contains uncompressed images"
+    default: "images"
+  
+  outputDirectory:  
+    description: "Directory that will contain the compressed images"
+    default: "dist"
+
+  jpgCompressionQuality:  
+    description: "Set the level of compression for JPG image files"
+    default: 40
+  
+  pngCompressionQuality:  
+    description: "Set the level of compression for PNG image files"
+    default: 40
+  
+  gifCompressionQuality:  
+    description: "Set the level of compression for GIF image files"
+    default: 2
+    
+runs:
+  using: "composite"
+  steps:
+    - name: Print npm and node version
+      shell: bash
+      run: |
+        npm --version
+        node --version
+
+    - name: Install required npm packages
+      shell: bash
+      run: |
+        npm install imagemin-cli imagemin-gifsicle imagemin-mozjpeg imagemin-pngquant --global --loglevel error    
+
+    - name: Run image compression
+      shell: bash
+      run: |
+        imagemin ${{ inputs.inputDirectory }} \
+          --out-dir=${{ inputs.outputDirectory }} \
+          --plugin.mozjpeg.quality=${{ inputs.jpgCompressionQuality }} \
+          --plugin.gifsicle.optimizationLevel=${{ inputs.gifCompressionQuality }} \
+          --plugin.pngquant.quality=${{ inputs.pngCompressionQuality }} \
+          --plugin.pngquant.quality=${{ inputs.pngCompressionQuality }}
