@@ -6,6 +6,8 @@ Uses the [imagemin CLI](https://github.com/imagemin/imagemin-cli) to compress im
 
 ## Inputs
 
+While all the input parameters are optional, feel free to supply them in case you need to customize the values. See example usage below to know how to customize these values. 
+
 | **Parameter**           | **Description**                                                                             | **Default value** |
 | ----------------------- | ------------------------------------------------------------------------------------------- | ----------------- |
 | input-directory         | Directory that contains uncompressed images.                                                | images            |

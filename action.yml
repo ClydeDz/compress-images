@@ -20,7 +20,7 @@ inputs:
   
   png-compression-quality:  
     description: "Set the level of compression for PNG image files"
-    default: 40
+    default: 0.4
   
   gif-compression-quality:  
     description: "Set the level of compression for GIF image files"
