@@ -6,23 +6,23 @@ branding:
   color: "red"
 
 inputs:  
-  inputDirectory:  
+  input-directory:  
     description: "Directory that contains uncompressed images"
     default: "images"
   
-  outputDirectory:  
+  output-directory:  
     description: "Directory that will contain the compressed images"
     default: "dist"
 
-  jpgCompressionQuality:  
+  jpg-compression-quality:  
     description: "Set the level of compression for JPG image files"
     default: 40
   
-  pngCompressionQuality:  
+  png-compression-quality:  
     description: "Set the level of compression for PNG image files"
     default: 40
   
-  gifCompressionQuality:  
+  gif-compression-quality:  
     description: "Set the level of compression for GIF image files"
     default: 2
     
@@ -43,9 +43,9 @@ runs:
     - name: Run image compression
       shell: bash
       run: |
-        imagemin ${{ inputs.inputDirectory }} \
-          --out-dir=${{ inputs.outputDirectory }} \
-          --plugin.mozjpeg.quality=${{ inputs.jpgCompressionQuality }} \
-          --plugin.gifsicle.optimizationLevel=${{ inputs.gifCompressionQuality }} \
-          --plugin.pngquant.quality=${{ inputs.pngCompressionQuality }} \
-          --plugin.pngquant.quality=${{ inputs.pngCompressionQuality }}
+        imagemin ${{ inputs.input-directory }} \
+          --out-dir=${{ inputs.output-directory }} \
+          --plugin.mozjpeg.quality=${{ inputs.jpg-compression-quality }} \
+          --plugin.gifsicle.optimizationLevel=${{ inputs.gif-compression-quality }} \
+          --plugin.pngquant.quality=${{ inputs.png-compression-quality }} \
+          --plugin.pngquant.quality=${{ inputs.png-compression-quality }}
